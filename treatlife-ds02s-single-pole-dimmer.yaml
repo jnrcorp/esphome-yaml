@@ -100,7 +100,7 @@ light:
     switch_datapoint: 1
     dimmer_datapoint: 2
     min_value_datapoint: 3
-    min_value: 10
+    min_value: 130
     max_value: 980
 
 switch:
@@ -112,20 +112,25 @@ switch:
 number:
   - platform: tuya
     number_datapoint: 2
-    name: Brightness Raw
-    min_value: 10
-    max_value: 980
+    name: Brightness
+    unit_of_measurement: "%"
+    min_value: 13
+    max_value: 98
     step: 1
+    multiply: 10
   - platform: tuya
     number_datapoint: 3
-    name: Brightness Min Raw
-    min_value: 10
-    max_value: 1000
+    name: Brightness Minimum
+    unit_of_measurement: "%"
+    min_value: 1
+    max_value: 100
     step: 1
+    multiply: 10
     entity_category: config
   - platform: tuya
     number_datapoint: 102
-    name: Count Down Minutes
+    name: Off Countdown
+    unit_of_measurement: mins
     min_value: 0
     max_value: 1440
     step: 1
