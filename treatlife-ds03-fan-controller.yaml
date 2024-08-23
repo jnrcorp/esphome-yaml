@@ -1,7 +1,7 @@
 substitutions:
   device_name: fireplace-fan
   friendly_name: Fireplace
-  description: "TreatLife DS03 Fan Controller"
+  description: "TreatLife DS02F Fan Controller"
 
 esphome:
   name: $device_name
@@ -111,7 +111,7 @@ number:
   - platform: tuya
     number_datapoint: 2
     name: Countdown
-    unit_of_measurement: s
+    unit_of_measurement: seconds
     min_value: 0
     max_value: 86400
     step: 1
