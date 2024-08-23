@@ -1,0 +1,173 @@
+substitutions:
+  device_name: family-room-play
+  friendly_name: Family Room Play
+  description: "TreatLife DS03 Fan and Light Switch BK7231N v2.1.6"
+
+esphome:
+  name: $device_name
+  friendly_name: $friendly_name
+  comment: $description
+
+bk72xx:
+  board: generic-bk7231n-qfn32-tuya
+
+# Enable logging
+logger:
+
+web_server:
+  auth: 
+    username: !secret web_server_auth_user
+    password: !secret web_server_auth_password
+
+captive_portal:
+
+mdns:
+
+uart:
+  rx_pin: RX1
+  tx_pin: TX1
+  baud_rate: 115200
+
+# Uncomment to add local time and avoid the "LOCAL_TIME_QUERY is not handled because time is not configured" log error
+time:
+  - platform: homeassistant
+    id: homeassistant_time
+tuya:
+  time_id: homeassistant_time
+
+# Enable Home Assistant API
+api:
+  encryption:
+    key: !secret api_encryption_key
+
+ota:
+  - platform: esphome
+    password: !secret ota_password
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+  fast_connect: true
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "$friendly_name Fallback HS"
+    password: !secret fallback_hotspot_password
+
+debug:
+  update_interval: 30s
+
+button:
+  - platform: restart
+    name: Restart
+
+text_sensor:
+  - platform: debug
+    reset_reason:
+      name: Reset Reason
+  - platform: libretiny
+    version:
+      name: LibreTiny Version
+
+  # Expose ESPHome version as sensor.
+  - platform: version
+    name: ESPHome Version
+    
+  - platform: wifi_info
+    ip_address:
+      name: IP Address
+    ssid:
+      name: SSID
+    bssid:
+      name: BSSID
+
+sensor:
+  - platform: wifi_signal
+    name: WiFi Signal
+    update_interval: 60s
+    filters:
+      - delta: 0.01
+      - throttle: 300s
+
+  - platform: uptime
+    name: Uptime
+    filters:
+      - throttle: 300s
+
+light:
+  - platform: tuya
+    name: Dimmer
+    switch_datapoint: 101
+    dimmer_datapoint: 6
+    min_value_datapoint: 105
+    min_value: 60
+    max_value: 980
+
+fan:
+  - platform: tuya
+    name: Fan
+    switch_datapoint: 1
+    speed_datapoint: 3
+    speed_count: 4
+
+select:
+  - platform: tuya
+    enum_datapoint: 3
+    name: Fan Speed
+    optimistic: true
+    options:
+      0: Speed 1
+      1: Speed 2
+      2: Speed 3
+      3: Speed 4
+  - platform: tuya
+    enum_datapoint: 106
+    entity_category: config
+    name: Dimming Mode
+    optimistic: true
+    options:
+      0: Mode 1
+      1: Mode 2
+      2: Mode 3
+
+number:
+  - platform: tuya
+    number_datapoint: 6
+    name: Brightness
+    unit_of_measurement: "%"
+    min_value: 6
+    max_value: 98
+    step: 1
+    multiply: 10
+  - platform: tuya
+    number_datapoint: 105
+    name: Brightness Mininum
+    unit_of_measurement: "%"
+    min_value: 1
+    max_value: 100
+    step: 1
+    multiply: 10
+    entity_category: config
+
+  - platform: tuya
+    number_datapoint: 102
+    name: (Unconfirmed) Fan Countdown
+    unit_of_measurement: "minutes"
+    min_value: 0
+    max_value: 1440
+    step: 1
+    entity_category: config
+  - platform: tuya
+    number_datapoint: 103
+    name: (Unconfirmed) Light Count Down
+    unit_of_measurement: "minutes"
+    min_value: 0
+    max_value: 1440
+    step: 1
+  - platform: tuya
+    number_datapoint: 108
+    name: (Unconfirmed) Indicator
+    min_value: 0
+    max_value: 2
+    step: 1
+    entity_category: config
