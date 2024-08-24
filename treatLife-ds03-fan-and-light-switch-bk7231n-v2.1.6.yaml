@@ -164,6 +164,7 @@ number:
     min_value: 0
     max_value: 1440
     step: 1
+    entity_category: config
   - platform: tuya
     number_datapoint: 108
     name: (Unconfirmed) Indicator
