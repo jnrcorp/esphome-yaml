@@ -1,7 +1,11 @@
 substitutions:
-  device_name: henry
-  friendly_name: Henry
-  description: "TreatLife DS02S Single Pole Dimmer"
+  device_name: kitchen-table
+  friendly_name: Kitchen Table
+  description: "TreatLife DS02S Single Pole Dimmer BK7231T v1.1.71"
+  min_brightness: "70"
+  max_brightness: "1000"
+  min_brightness_pct: "7"
+  max_brightness_pct: "100"
 
 esphome:
   name: $device_name
@@ -100,8 +104,8 @@ light:
     switch_datapoint: 1
     dimmer_datapoint: 2
     min_value_datapoint: 3
-    min_value: 130
-    max_value: 980
+    min_value: $min_brightness
+    max_value: $max_brightness
 
 switch:
   - platform: tuya
@@ -114,10 +118,11 @@ number:
     number_datapoint: 2
     name: Brightness
     unit_of_measurement: "%"
-    min_value: 13
-    max_value: 98
+    min_value: $min_brightness_pct
+    max_value: $max_brightness_pct
     step: 1
     multiply: 10
+    mode: BOX
   - platform: tuya
     number_datapoint: 3
     name: Brightness Minimum
