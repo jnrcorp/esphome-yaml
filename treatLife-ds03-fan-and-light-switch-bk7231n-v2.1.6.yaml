@@ -2,6 +2,10 @@ substitutions:
   device_name: family-room-play
   friendly_name: Family Room Play
   description: "TreatLife DS03 Fan and Light Switch BK7231N v2.1.6"
+  min_brightness: "60"
+  max_brightness: "980"
+  min_brightness_pct: "6"
+  max_brightness_pct: "98"
 
 esphome:
   name: $device_name
@@ -100,8 +104,8 @@ light:
     switch_datapoint: 101
     dimmer_datapoint: 6
     min_value_datapoint: 105
-    min_value: 60
-    max_value: 980
+    min_value: $min_brightness
+    max_value: $max_brightness
 
 fan:
   - platform: tuya
@@ -135,10 +139,11 @@ number:
     number_datapoint: 6
     name: Brightness
     unit_of_measurement: "%"
-    min_value: 6
-    max_value: 98
+    min_value: $min_brightness_pct
+    max_value: $max_brightness_pct
     step: 1
     multiply: 10
+    mode: BOX
   - platform: tuya
     number_datapoint: 105
     name: Brightness Mininum
@@ -148,6 +153,7 @@ number:
     step: 1
     multiply: 10
     entity_category: config
+    mode: BOX
 
   - platform: tuya
     number_datapoint: 102
