@@ -1,7 +1,7 @@
 substitutions:
   device_name: fireplace-fan
   friendly_name: Fireplace
-  description: "TreatLife DS02F Fan Controller"
+  description: "TreatLife DS02F Fan Controller BK7231T"
 
 esphome:
   name: $device_name
