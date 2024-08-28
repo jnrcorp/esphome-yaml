@@ -13,3 +13,20 @@ web_server_auth_password: "<replace-me>"
 fallback_hotspot_password: "<replace-me>"
 ota_password: "<replace-me>"
 ```
+
+Upload these template files using `File Editor` into the `esphome` directory. The `.` prefix is important to prevent ESPHome from recognizing the file as a device.
+
+Then update your device files with the appropriate substituions and includes:
+
+```
+substitutions:
+  device_name: dining-room
+  friendly_name: Dining Room
+  min_brightness_pct: "15"
+  max_brightness_pct: "100"
+  min_brightness: "150"
+  max_brightness: "1000"
+
+<<: !include .common.yaml
+<<: !include .treatlife-ds02s-single-pole-dimmer.yaml
+```
