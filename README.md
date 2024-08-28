@@ -30,3 +30,5 @@ substitutions:
 <<: !include .common.yaml
 <<: !include .treatlife-ds02s-single-pole-dimmer.yaml
 ```
+
+If you have any suggestions or improvements feel free to open a PR with additional files or changes and I'm happy to pull them in.
