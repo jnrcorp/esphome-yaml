@@ -1,6 +1,3 @@
-# Be sure to include this and common in your implementation file
-<<: !include .common.yaml
-
 substitutions:
   device_name: kitchen-table
   friendly_name: Kitchen Table
@@ -23,6 +20,8 @@ esphome:
 
 bk72xx:
   board: generic-bk7231t-qfn32-tuya
+
+<<: !include .common.yaml
 
 uart:
   rx_pin: RX1
