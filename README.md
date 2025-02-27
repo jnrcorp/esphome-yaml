@@ -27,7 +27,6 @@ substitutions:
   min_brightness: "150"
   max_brightness: "1000"
 
-<<: !include .common.yaml
 <<: !include .treatlife-ds02s-single-pole-dimmer.yaml
 ```
 
