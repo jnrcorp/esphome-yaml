@@ -1,3 +1,6 @@
+# Be sure to include this and common in your implementation file
+<<: !include .common.yaml
+
 substitutions:
   device_name: kitchen-table
   friendly_name: Kitchen Table
