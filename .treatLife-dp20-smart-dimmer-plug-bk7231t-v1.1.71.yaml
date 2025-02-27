@@ -1,6 +1,3 @@
-# Be sure to include this and common in your implementation file
-<<: !include .common.yaml
-
 substitutions:
   device_name: left-lamp
   friendly_name: Left Lamp
