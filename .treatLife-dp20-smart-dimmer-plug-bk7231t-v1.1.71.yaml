@@ -1,4 +1,4 @@
-# Be sure to include
+# Be sure to include this and common in your implementation file
 <<: !include .common.yaml
 <<: !include .treatlife-ds02s-single-pole-dimmer.yaml
 
