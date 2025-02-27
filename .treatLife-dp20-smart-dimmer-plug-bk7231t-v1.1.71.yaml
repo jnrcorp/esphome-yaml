@@ -24,6 +24,8 @@ esphome:
 bk72xx:
   board: generic-bk7231t-qfn32-tuya
 
+<<: !include .common.yaml
+
 uart:
   rx_pin: RX1
   tx_pin: TX1
