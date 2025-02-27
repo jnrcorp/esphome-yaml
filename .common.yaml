@@ -43,26 +43,6 @@ button:
   - platform: restart
     name: Restart
 
-text_sensor:
-  - platform: debug
-    reset_reason:
-      name: Reset Reason
-  - platform: libretiny
-    version:
-      name: LibreTiny Version
-
-  # Expose ESPHome version as sensor.
-  - platform: version
-    name: ESPHome Version
-    
-  - platform: wifi_info
-    ip_address:
-      name: IP Address
-    ssid:
-      name: SSID
-    bssid:
-      name: BSSID
-
 sensor:
   - platform: wifi_signal
     name: WiFi Signal
