@@ -1,11 +1,9 @@
 # Be sure to include this and common in your implementation file
 <<: !include .common.yaml
-<<: !include .treatlife-ds02s-single-pole-dimmer.yaml
 
 substitutions:
   device_name: left-lamp
   friendly_name: Left Lamp
-  description: "TreatLife DP20 Smart Dimmer Plug BK7231T v1.1.71"
   min_brightness: "90"
   max_brightness: "980"
   min_brightness_pct: "9"
